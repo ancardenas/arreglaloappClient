@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">Arreglalo</string>
+    <string name="txt_inicio"> <b>¿Reparaciones? <br> </br> Encuentra a tu Fixer </b> </string>
+    <string name="imffix">img</string>
+    <string name="button_reg">Con numero de Celular</string>
+    <string name="crea_tu_cuenta_en_arreglalo">Crea tu cuenta en Arreglalo</string>
+
+
+    <string name="txt_2">Ingresa tu numero de Celular</string>
+    <string name="num_camp">Numero de Celular</string>
+    <string name="rbnum">Acepto brindar mi numero de telefono a arreglalo</string>
+    <string name="btn_num">Recibir Codigo por WhatsApp</string>
+    <string name="btn_numtel">Recibir Codigo por SMS</string>
+    <string name="check">Acepto recibir codigo de seguridad por WhastApp/SMS</string>
+
+
+    <string name="imagen">imagen</string>
+    <string name="but_cod">Ingresar Codigo</string>
+    <string name="txtcod">Ingresa tu codigo de Confirmación</string>
+    <string name="email">Email</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="nombre">Nombre</string>
+    <string name="ck_tyc">Aceptar Terminos y Condiciones</string>
+    <string name="ck_tdp">Acepto expresamente la autorizacion de tratamiento de datos personale y politica de privacidad</string>
+    <string name="siguiente">Siguiente</string>
+
+    <string name="txt_birnddirec">Brindanos tu dirección</string>
+    <string name="bt_perdirecc">Permitir dirección</string>
+
+
+
+    <string name="title_activity_maps">Map</string>
+    <string name="direcci_n">Dirección</string>
+    <string name="ciudad">Ciudad</string>
+    <string name="details">Detalles</string>
+    <string name="bt_finish">!Todo Listo¡</string>
+
+    <string name="txt_pintGen">Pintura General</string>
+    <string name="txt_resanes">Resanes</string>
+    <string name="txt_colgObjeto">Colgar Objetos</string>
+    <string name="txt_estuGas">Estufa de Gas</string>
+
+    <string name="pidelo">Pidelo</string>
+    <string name="img_griferia">Griferia</string>
+    <string name="img_repTub">Reparacion de Tuberias</string>
+    <string name="img_desague">Desagüe</string>
+    <string name="img_filtraciones">Filtraciones</string>
+    <string name="txt_griferia">Griferia</string>
+    <string name="txt_filtraciones">Filtraciónes</string>
+    <string name="txt_repTub">Reparacion de Tuberias</string>
+    <string name="txt_desague">Desagüe</string>
+    <string name="txt_desatasco">Desatasco</string>
+    <string name="txt_repGen">Reparaciones Generales</string>
+
+
+</resources>
