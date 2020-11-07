@@ -42,6 +42,10 @@ public class cotizacion extends AppCompatActivity {
     }
     public void  click (View view){
         Intent intent = new Intent(this,Facil.class);
+        /*
+        AQUI es donde se deberia subir la solicitud a la base de datos
+        el cual corresponde a la variable solicitud
+         */
         startActivity(intent);
     }
 }

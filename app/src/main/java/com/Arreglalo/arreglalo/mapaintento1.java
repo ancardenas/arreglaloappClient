@@ -99,6 +99,10 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
         cliente.setDireccion(direccion.getText().toString());
         cliente.setCiudad(ciudad.getText().toString());
         cliente.setDetalles(detalles.getText().toString());
+        /*
+        AQUI es donde se termina el registro del cliente y se deberia subir toda su inormacion a la
+        base de datos
+         */
         intent.putExtra("cliente",(Serializable)cliente);
         startActivity(intent);
     }
