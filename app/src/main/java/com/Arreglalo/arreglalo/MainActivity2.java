@@ -35,8 +35,8 @@ public class MainActivity2 extends AppCompatActivity {
 
     public void clikc(View view){
         String i = (num.getText().toString());
-        long a = Long.parseLong(i);
-        //cliente.setNumero(a);
+
+        cliente.setNumero(i);
 
         Intent intent = new Intent(this, cod_seg.class);
         intent.putExtra("cliente",(Serializable) cliente);
