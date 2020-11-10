@@ -122,7 +122,7 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
         cargarWebService();
 
         intent.putExtra("cliente",(Serializable)cliente);
-        //startActivity(intent);
+        startActivity(intent);
     }
 
     private void cargarWebService() {
@@ -136,7 +136,7 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
                 "&ciudad="+cliente.getCiudad()+
                 "&contrasena="+cliente.getContrasena()+
                 "&calificacion="+cliente.getCalificacion()+
-                "&id="+40;
+                "&id="+1;
 
         url=url.replace(" ","%20");
         //String url1 ="http://192.168.0.10/arreglalo/index.php?nombre=yo&numero=2344&direccion=yo&correo=yo&ciudad=yo&contrasena=yo&calificacion=5&id=5";
