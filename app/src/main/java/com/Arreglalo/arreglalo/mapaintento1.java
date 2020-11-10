@@ -54,6 +54,8 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
         direccion = findViewById(R.id.ed_direccion);
         ciudad = findViewById(R.id.ed_ciudad);
         detalles = findViewById(R.id.ed_detalles);
+
+
         queue = Volley.newRequestQueue(this);
     }
 
@@ -129,14 +131,14 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
         dialog = new ProgressDialog(this);
         dialog.setMessage("CARGAAAA");
         dialog.show();
-        String url = "http://192.168.0.10/arreglalo/index.php?nombre="+cliente.getNombre()+
+        String url = "https://arreglalo.000webhostapp.com/index.php?nombre="+cliente.getNombre()+
                 "&numero="+cliente.getNumero()+
                 "&direccion="+cliente.getDireccion()+"%20"+cliente.getDetalles()+
                 "&correo="+cliente.getCorreo()+
                 "&ciudad="+cliente.getCiudad()+
                 "&contrasena="+cliente.getContrasena()+
                 "&calificacion="+cliente.getCalificacion()+
-                "&id="+1;
+                "&id="+cliente.getId();
 
         url=url.replace(" ","%20");
         //String url1 ="http://192.168.0.10/arreglalo/index.php?nombre=yo&numero=2344&direccion=yo&correo=yo&ciudad=yo&contrasena=yo&calificacion=5&id=5";

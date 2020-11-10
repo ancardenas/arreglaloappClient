@@ -37,7 +37,7 @@ public class MainActivity2 extends AppCompatActivity {
         String i = (num.getText().toString());
 
         cliente.setNumero(i);
-
+        cliente.setId(2);
         Intent intent = new Intent(this, cod_seg.class);
         intent.putExtra("cliente",(Serializable) cliente);
         startActivity(intent);

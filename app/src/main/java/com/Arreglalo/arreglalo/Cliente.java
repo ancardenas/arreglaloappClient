@@ -13,7 +13,15 @@ public class Cliente implements Serializable {
     private  String ciudad;
     private  String detalles;
     private  String contrasena;
+    private  int id;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Cliente(String nombre, String numero, String direccion, String correo, String ciudad, String detalles) {
         this.nombre = nombre;

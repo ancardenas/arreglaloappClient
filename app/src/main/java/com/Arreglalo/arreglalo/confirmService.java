@@ -56,6 +56,7 @@ public class confirmService extends AppCompatActivity {
         intent.putExtra("hour",hora);
         intent.putExtra("minute",minutos);
         intent.putExtra("solicitud", (Serializable) solicitud);
+        intent.putExtra("cliente",(Serializable) cliente);
         startActivity(intent);
     }
     public void fechaHora(View view){
