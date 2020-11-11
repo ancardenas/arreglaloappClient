@@ -11,7 +11,16 @@ public class Solicitud implements Serializable {
     private String service;
     private String details;
     private Cliente cliente;
+    private int id;
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    ;
     public String getDetails() {
         return details;
     }
@@ -30,6 +39,7 @@ public class Solicitud implements Serializable {
         this.service = service;
         this.cliente = cliente;
     }
+    public Solicitud(){}
 
     public Cliente getCliente() {
         return cliente;

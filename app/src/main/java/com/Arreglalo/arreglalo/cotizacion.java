@@ -70,11 +70,12 @@ public class cotizacion extends AppCompatActivity implements Response.Listener<J
         startActivity(intent);
     }
 
+
     private void cargarWebService() {
         dialog = new ProgressDialog(this);
         dialog.setMessage("CARGAAAA");
         dialog.show();
-        String url = "https://arreglalo.000webhostapp.com/insertSolicitud.php?id=1" +
+        String url = "https://arreglalo.000webhostapp.com/insertSolicitud.php?id="+solicitud.getId() +
                 "&tipo="+solicitud.getService() +
                 "&desc="+solicitud.getDetails() +
                 "&uid="+cliente.getId() +
