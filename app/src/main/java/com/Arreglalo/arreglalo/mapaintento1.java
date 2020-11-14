@@ -121,9 +121,10 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
         AQUI es donde se termina el registro del cliente y se deberia subir toda su inormacion a la
         base de datos
          */
-        cargarWebService();
+
 
         intent.putExtra("cliente",(Serializable)cliente);
+        cargarWebService();
         startActivity(intent);
     }
 
@@ -157,5 +158,7 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
     public void onResponse(JSONObject response) {
         Toast.makeText(this,"MAMA LO LOGRE",Toast.LENGTH_SHORT).show();
         dialog.hide();
+
+
     }
 }

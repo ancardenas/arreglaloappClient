@@ -12,6 +12,25 @@ public class Solicitud implements Serializable {
     private String details;
     private Cliente cliente;
     private int id;
+    private boolean complete;
+    private boolean acepted;
+
+    public boolean isAcepted() {
+        return acepted;
+    }
+
+    public void setAcepted(boolean acepted) {
+        this.acepted = acepted;
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
+    }
+
     public int getId() {
         return id;
     }

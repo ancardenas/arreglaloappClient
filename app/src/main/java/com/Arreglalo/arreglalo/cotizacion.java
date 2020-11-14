@@ -66,7 +66,7 @@ public class cotizacion extends AppCompatActivity implements Response.Listener<J
         AQUI es donde se deberia subir la solicitud a la base de datos
         el cual corresponde a la variable solicitud
          */
-        cargarWebService();
+        //cargarWebService();
         startActivity(intent);
     }
 

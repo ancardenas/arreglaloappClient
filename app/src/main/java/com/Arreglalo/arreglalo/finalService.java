@@ -39,7 +39,7 @@ public class finalService extends AppCompatActivity implements Response.Listener
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(finalService.this, cotizacion.class);
+                Intent intent = new Intent(finalService.this, pincipalServices.class);
                 intent.putExtra("cliente",((Serializable)cliente));
                 intent.putExtra("solicitud",((Serializable)solicitud));
                 startActivity(intent);
@@ -69,7 +69,7 @@ public class finalService extends AppCompatActivity implements Response.Listener
         JSONObject jsonObject= null;
         try {
             jsonObject  =jsonArray.getJSONObject(0);
-            solicitud.setId(jsonObject.optInt("Id_S")+1);
+            solicitud.setId(jsonObject.optInt("Id_F")+1);
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -3,6 +3,7 @@ package com.Arreglalo.arreglalo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +13,24 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.OnMapReadyCallback;
+
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Calendar;
 import java.util.Timer;
 
-public class confirmService extends AppCompatActivity {
+public class confirmService extends AppCompatActivity implements Response.Listener<JSONObject>,Response.ErrorListener {
     private String service;
     private TextView textView;
     private EditText det;
@@ -30,6 +42,11 @@ public class confirmService extends AppCompatActivity {
     private int dia,mes,ano;
     private int d,m,a,hora,minutos;
     private Cliente cliente;
+    private Solicitud solicitud;
+
+    private ProgressDialog dialog;
+    private RequestQueue queue;
+    private JsonObjectRequest jsonObjectRequest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,11 +60,12 @@ public class confirmService extends AppCompatActivity {
         hour = findViewById(R.id.hora);
         det = findViewById(R.id.det);
         cliente = (Cliente) getIntent().getSerializableExtra("cliente");
+        queue = Volley.newRequestQueue(this);
     }
     public void click(View view){
         Intent intent = new Intent(this,finalService.class);
         details = det.getText().toString();
-        Solicitud solicitud = new Solicitud(d,m,a,hora,minutos,service,details,cliente);
+        solicitud = new Solicitud(d,m,a,hora,minutos,service,details,cliente);
 
         intent.putExtra("service",service);
         intent.putExtra("d",d);
@@ -57,6 +75,9 @@ public class confirmService extends AppCompatActivity {
         intent.putExtra("minute",minutos);
         intent.putExtra("solicitud", (Serializable) solicitud);
         intent.putExtra("cliente",(Serializable) cliente);
+
+
+        cargarWebService();
         startActivity(intent);
     }
     public void fechaHora(View view){
@@ -93,5 +114,33 @@ public class confirmService extends AppCompatActivity {
             timePickerDialog.updateTime(hora,minutos);
             timePickerDialog.show();
         }
+    }
+    private void cargarWebService() {
+        dialog = new ProgressDialog(this);
+        dialog.setMessage("CARGAAAA");
+        dialog.show();
+        String url = "https://arreglalo.000webhostapp.com/insertSolicitud.php?id="+solicitud.getId() +
+                "&tipo="+solicitud.getService() +
+                "&desc="+solicitud.getDetails() +
+                "&uid="+cliente.getId() +
+                "&fecha="+solicitud.getAno() +"-"+solicitud.getMes() +"-"+solicitud.getDia()+"%20"+solicitud.getHora()+":"+solicitud.getMinuto()+":00";
+
+        url=url.replace(" ","%20");
+        //String url1 ="http://192.168.0.10/arreglalo/index.php?nombre=yo&numero=2344&direccion=yo&correo=yo&ciudad=yo&contrasena=yo&calificacion=5&id=5";
+        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+        queue.add(jsonObjectRequest);
+
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        dialog.hide();
+        Toast.makeText(this,"MAMA NO LO LOGRE",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        Toast.makeText(this,"MAMA LO LOGRE",Toast.LENGTH_SHORT).show();
+        dialog.hide();
     }
 }
