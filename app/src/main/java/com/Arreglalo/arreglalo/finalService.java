@@ -35,7 +35,7 @@ public class finalService extends AppCompatActivity implements Response.Listener
         solicitud = (Solicitud) getIntent().getExtras().getSerializable("solicitud");
         cliente = (Cliente) getIntent().getSerializableExtra("cliente");
         queue = Volley.newRequestQueue(this);
-        cargarWebService();
+        //cargarWebService();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

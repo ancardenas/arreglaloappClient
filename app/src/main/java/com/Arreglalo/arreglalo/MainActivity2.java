@@ -60,6 +60,8 @@ public class MainActivity2 extends AppCompatActivity implements com.android.voll
         intent.putExtra("cliente",(Serializable) cliente);
         startActivity(intent);
     }
+
+
     public void cargarWebService(){
         dialog = new ProgressDialog(this);
         dialog.setMessage("Cargando");

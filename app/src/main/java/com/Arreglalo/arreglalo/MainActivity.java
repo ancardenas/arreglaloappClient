@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
         Intent regis    = new Intent(this, MainActivity2.class);
         startActivity(regis);
     }
+    public void initSesion(View view){
+        Intent intent = new Intent(this,initSesion.class);
+        startActivity(intent);
+    }
     @Override
     protected void onStart() {
         super.onStart();

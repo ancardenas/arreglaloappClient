@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -23,6 +24,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -43,6 +46,8 @@ public class confirmService extends AppCompatActivity implements Response.Listen
     private int d,m,a,hora,minutos;
     private Cliente cliente;
     private Solicitud solicitud;
+private int id;
+    private boolean carge=false;
 
     private ProgressDialog dialog;
     private RequestQueue queue;
@@ -61,18 +66,24 @@ public class confirmService extends AppCompatActivity implements Response.Listen
         det = findViewById(R.id.det);
         cliente = (Cliente) getIntent().getSerializableExtra("cliente");
         queue = Volley.newRequestQueue(this);
+        cargarWebService();
+        //Declaramos un Handler que hace de unión entre el hilo principal y el secundario
+        Handler handler = new Handler();
+
+//Llamamos al método postDelayed
+        handler.postDelayed(new Runnable() {
+            public void run() {
+       //#código que se ejecuta tras el "delay"
+                carge=true;
+            }
+        }, 2000); // 2 segundos de "delay"
     }
     public void click(View view){
         Intent intent = new Intent(this,finalService.class);
         details = det.getText().toString();
         solicitud = new Solicitud(d,m,a,hora,minutos,service,details,cliente);
+        solicitud.setId(id);
 
-        intent.putExtra("service",service);
-        intent.putExtra("d",d);
-        intent.putExtra("m",m);
-        intent.putExtra("a",a);
-        intent.putExtra("hour",hora);
-        intent.putExtra("minute",minutos);
         intent.putExtra("solicitud", (Serializable) solicitud);
         intent.putExtra("cliente",(Serializable) cliente);
 
@@ -119,16 +130,35 @@ public class confirmService extends AppCompatActivity implements Response.Listen
         dialog = new ProgressDialog(this);
         dialog.setMessage("CARGAAAA");
         dialog.show();
-        String url = "https://arreglalo.000webhostapp.com/insertSolicitud.php?id="+solicitud.getId() +
+        /*String url = "https://arreglalo.000webhostapp.com/insertSolicitud.php?id="+solicitud.getId() +
                 "&tipo="+solicitud.getService() +
                 "&desc="+solicitud.getDetails() +
                 "&uid="+cliente.getId() +
                 "&fecha="+solicitud.getAno() +"-"+solicitud.getMes() +"-"+solicitud.getDia()+"%20"+solicitud.getHora()+":"+solicitud.getMinuto()+":00";
 
-        url=url.replace(" ","%20");
+        url=url.replace(" ","%20");*/
         //String url1 ="http://192.168.0.10/arreglalo/index.php?nombre=yo&numero=2344&direccion=yo&correo=yo&ciudad=yo&contrasena=yo&calificacion=5&id=5";
-        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
-        queue.add(jsonObjectRequest);
+        String url1 = "https://arreglalo.000webhostapp.com/recibirSol1.php";
+        if (!carge){
+            jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url1,null,this,this);
+            queue.add(jsonObjectRequest);
+        }else {
+            String url = "https://arreglalo.000webhostapp.com/insertSolicitud.php?id="+solicitud.getId() +
+                    "&tipo="+solicitud.getService() +
+                    "&desc="+solicitud.getDetails() +
+                    "&uid="+cliente.getId() +
+                    "&fecha="+solicitud.getAno() +"-"+solicitud.getMes() +"-"+solicitud.getDia()+"%20"+solicitud.getHora()+":"+solicitud.getMinuto()+":00";
+
+            url=url.replace(" ","%20");
+            jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+
+            queue.add(jsonObjectRequest);
+        }
+
+
+
+
+
 
     }
 
@@ -142,5 +172,16 @@ public class confirmService extends AppCompatActivity implements Response.Listen
     public void onResponse(JSONObject response) {
         Toast.makeText(this,"MAMA LO LOGRE",Toast.LENGTH_SHORT).show();
         dialog.hide();
+        JSONArray jsonArray = response.optJSONArray("usuario");
+        JSONObject jsonObject= null;
+        if (!carge) {
+            try {
+                jsonObject = jsonArray.getJSONObject(0);
+                id=(jsonObject.optInt("Id_S") + 1);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Toast.makeText(getApplicationContext(),id+" ",Toast.LENGTH_SHORT).show();
+        }
     }
 }
