@@ -53,7 +53,7 @@ public class clietnService extends AppCompatActivity implements Response.Listene
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         adapter.setOnClickListener(v -> {
             solicitud = solicituds.get(recyclerView.getChildAdapterPosition(v));
-            Toast.makeText(getApplicationContext(),solicitud.getService(),Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),solicitud.getService(),Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(getApplicationContext(), cotizacion.class);
             intent.putExtra("cliente",((Serializable)cliente));
             intent.putExtra("solicitud",((Serializable)solicitud));

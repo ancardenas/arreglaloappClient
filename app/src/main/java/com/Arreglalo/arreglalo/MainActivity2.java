@@ -56,7 +56,7 @@ public class MainActivity2 extends AppCompatActivity implements com.android.voll
 
         cliente.setNumero(i);
         //cliente.setId(2);
-        Intent intent = new Intent(this, cod_seg.class);
+        Intent intent = new Intent(this, per_data.class);
         intent.putExtra("cliente",(Serializable) cliente);
         startActivity(intent);
     }

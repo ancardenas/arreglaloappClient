@@ -81,7 +81,7 @@ public class pincipalServices extends AppCompatActivity implements Response.List
                 .setMessage("Un Fixer ha cotizado su solicitud desea observarla").setPositiveButton("Ver", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(),"Holi soy un dialogo",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"Holi soy un dialogo",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(),clietnService.class);
                 intent.putExtra("cliente",cliente);
                 intent.putExtra("service",service);

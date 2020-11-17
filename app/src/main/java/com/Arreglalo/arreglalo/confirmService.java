@@ -40,8 +40,8 @@ public class confirmService extends AppCompatActivity implements Response.Listen
     private String details;
     private Button btFecha;
     private Button btHora;
-    private EditText fecha;
-    private EditText hour;
+    private TextView fecha;
+    private TextView hour;
     private int dia,mes,ano;
     private int d,m,a,hora,minutos;
     private Cliente cliente;
@@ -129,7 +129,7 @@ private int id;
     }
     private void cargarWebService() {
         dialog = new ProgressDialog(this);
-        dialog.setMessage("CARGAAAA");
+        dialog.setMessage("Cargando");
         dialog.show();
         /*String url = "https://arreglalo.000webhostapp.com/insertSolicitud.php?id="+solicitud.getId() +
                 "&tipo="+solicitud.getService() +
@@ -166,12 +166,12 @@ private int id;
     @Override
     public void onErrorResponse(VolleyError error) {
         dialog.hide();
-        Toast.makeText(this,"MAMA NO LO LOGRE",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,"MAMA NO LO LOGRE",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onResponse(JSONObject response) {
-        Toast.makeText(this,"MAMA LO LOGRE",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,"MAMA LO LOGRE",Toast.LENGTH_SHORT).show();
         dialog.hide();
         JSONArray jsonArray = response.optJSONArray("usuario");
         JSONObject jsonObject= null;

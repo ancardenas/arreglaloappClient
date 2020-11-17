@@ -1,31 +1,35 @@
 <resources>
+
     <string name="app_name">Arréglalo</string>
     <string name="txt_inicio"> <b>¿Reparaciones? <br> </br> Encuentra a tu Fixer </b> </string>
     <string name="imffix">img</string>
-    <string name="button_reg">Con numero de Celular</string>
-    <string name="crea_tu_cuenta_en_arreglalo">Crea tu cuenta en Arreglalo</string>
+    <string name="button_reg">Con número de Celular</string>
+    <string name="crea_tu_cuenta_en_arreglalo">Crea tu cuenta en Arréglalo</string>
+    <string name="bt_initSesion">Iniciar Sesión</string>
+
+    <string name="correo">Correo</string>
 
 
-    <string name="txt_2">Ingresa tu numero de Celular</string>
+    <string name="txt_2">Ingresa tu número de Celular</string>
     <string name="num_camp">Numero de Celular</string>
     <string name="rbnum">Acepto brindar mi numero de telefono a arreglalo</string>
-    <string name="btn_num">Recibir Codigo por WhatsApp</string>
-    <string name="btn_numtel">Recibir Codigo por SMS</string>
-    <string name="check">Acepto recibir codigo de seguridad por WhastApp/SMS</string>
+    <string name="btn_num">Recibir Código por WhatsApp</string>
+    <string name="btn_numtel">Recibir Código por SMS</string>
+    <string name="check">Acepto recibir código de seguridad por WhastApp/SMS</string>
 
 
     <string name="imagen">imagen</string>
-    <string name="but_cod">Ingresar Codigo</string>
-    <string name="txtcod">Ingresa tu codigo de Confirmación</string>
+    <string name="but_cod">Ingresar Código</string>
+    <string name="txtcod">Ingresa tu código de Confirmación</string>
     <string name="email">Email</string>
     <string name="contrasena">Contraseña</string>
     <string name="apellidos">Apellidos</string>
     <string name="nombre">Nombre</string>
-    <string name="ck_tyc">Aceptar Terminos y Condiciones</string>
-    <string name="ck_tdp">Acepto expresamente la autorizacion de tratamiento de datos personale y politica de privacidad</string>
+    <string name="ck_tyc">Aceptar Términos y Condiciones</string>
+    <string name="ck_tdp">Acepto expresamente la autorización de tratamiento de datos personale y política de privacidad</string>
     <string name="siguiente">Siguiente</string>
 
-    <string name="txt_birnddirec">Brindanos tu dirección</string>
+    <string name="txt_birnddirec">Bríndanos tu dirección</string>
     <string name="bt_perdirecc">Permitir dirección</string>
 
 
@@ -33,24 +37,50 @@
     <string name="direcci_n">Dirección</string>
     <string name="ciudad">Ciudad</string>
     <string name="details">Detalles</string>
-    <string name="bt_finish">!Todo Listo¡</string>
+    <string name="bt_finish">¡Todo Listo!</string>
+
 
     <string name="txt_pintGen">Pintura General</string>
     <string name="txt_resanes">Resanes</string>
     <string name="txt_colgObjeto">Colgar Objetos</string>
     <string name="txt_estuGas">Estufa de Gas</string>
-
     <string name="pidelo">Pidelo</string>
-    <string name="img_griferia">Griferia</string>
-    <string name="img_repTub">Reparacion de Tuberias</string>
+    <string name="img_griferia">Grifería</string>
+    <string name="img_repTub">Reparación de Tuberias</string>
     <string name="img_desague">Desagüe</string>
     <string name="img_filtraciones">Filtraciones</string>
-    <string name="txt_griferia">Griferia</string>
-    <string name="txt_filtraciones">Filtraciónes</string>
-    <string name="txt_repTub">Reparacion de Tuberias</string>
+    <string name="txt_griferia">Grifería</string>
+    <string name="txt_filtraciones">Filtraciones</string>
+    <string name="txt_repTub">Reparación de Tuberías</string>
     <string name="txt_desague">Desagüe</string>
     <string name="txt_desatasco">Desatasco</string>
     <string name="txt_repGen">Reparaciones Generales</string>
+    <string name="montado_de_mobiliario">Montaje de Mobiliario</string>
+    <string name="bisagras">Bisagras</string>
+    <string name="chapas">Chapas</string>
+    <string name="electrico">Eléctrico</string>
+    <string name="fontaneria">Fontanería</string>
+    <string name="peque_os_arr_glos">Pequeños Arréglos</string>
+    <string name="carpinteria">Carpintería</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="buscar">Buscar</string>
+
+
+    <string name="banner">banner</string>
+    <string name="infoCost">Te informamos que la hora de tu fixer vale 25.000</string>
+    <string name="timeCalc">El cálculo se realiza de acuerdo a las horas que tarde tu arreglo</string>
+    <string name="enviar">Enviar</string>
+    <string name="fecha">Fecha</string>
+    <string name="hora">Hora</string>
+    <string name="descDet">Desripción detallada del daño</string>
+    <string name="cuentanos">Cuéntanos tu daño:</string>
+    <string name="servicio">servicio</string>
+
+
+
+    <string name="solreSb">Tu solicitud fue recibida</string>
+    <string name="min15">Te enviaremos tu cotización en 15 minutos Aproximadamente</string>
+    <string name="nosRep">No te estreses, Nosotros lo reparamos</string>
 
 
 </resources>
