@@ -50,7 +50,7 @@ public class initSesion extends AppCompatActivity implements Response.Listener<J
         Handler handler = new Handler();
 
 //Llamamos al método postDelayed
-        handler.postDelayed(new Runnable() {
+        /*handler.postDelayed(new Runnable() {
             public void run() {
        //#código que se ejecuta tras el "delay"
                 if (correcto){
@@ -62,7 +62,7 @@ public class initSesion extends AppCompatActivity implements Response.Listener<J
                     Toast.makeText(getApplicationContext(),"NO ES USUARIO",Toast.LENGTH_SHORT).show();
                 }
             }
-        }, 1000); // 2 segundos de "delay"
+        }, 1500);*/ // 2 segundos de "delay"
 
     }
 
@@ -73,7 +73,7 @@ public class initSesion extends AppCompatActivity implements Response.Listener<J
     public void cargarWebService(){
         dialog = new ProgressDialog(this);
         dialog.setMessage("Cargando");
-        String url = "https://arreglalo.000webhostapp.com/initSesion.php?correo="+correo.getText().toString() +
+        String url = "https://arreglalo.co/initSesion.php?correo="+correo.getText().toString() +
                 "&contrasena="+contrasena.getText().toString();
         dialog.show();
 
@@ -110,7 +110,16 @@ public class initSesion extends AppCompatActivity implements Response.Listener<J
         }else{
             correcto=false;
 
+        }if (correcto){
+            //Toast.makeText(getApplicationContext(),"SI ES USUARIO",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(),pincipalServices.class);
+            intent.putExtra("cliente",(Serializable) cliente);
+            startActivity(intent);
+            finish();
+        }else{
+            Toast.makeText(getApplicationContext(),"Su usuario o contraseña no son correctos" ,Toast.LENGTH_SHORT).show();
         }
+
 
     }
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -66,6 +67,7 @@ public class pincipalServices extends AppCompatActivity implements Response.List
         Intent intent = new Intent(this,confirmService.class);
         intent.putExtra("cliente",cliente);
         intent.putExtra("service",service);
+        intent.putExtra("listServices",id_s);
         startActivity(intent);
     }
     public String getService(){
@@ -76,13 +78,23 @@ public class pincipalServices extends AppCompatActivity implements Response.List
         cargarWebService();
         new AlertDialog.Builder(this)
                 .setTitle("Su solicitud ha sido cotizada")
-                .setMessage("Un Fixer ha cotizado su solicitud desea observarla");
+                .setMessage("Un Fixer ha cotizado su solicitud desea observarla").setPositiveButton("Ver", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(),"Holi soy un dialogo",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),clietnService.class);
+                intent.putExtra("cliente",cliente);
+                intent.putExtra("service",service);
+                intent.putExtra("listServices",id_s);
+                startActivity(intent);
+            }
+        }).show();
     }
 
     public void cargarWebService(){
         dialog = new ProgressDialog(this);
         dialog.setMessage("Cargando");
-        String url = "https://arreglalo.000webhostapp.com/clientList.php?id="+cliente.getId();
+        String url = "https://arreglalo.co/clientList.php?id="+cliente.getId();
 
         dialog.show();
 
@@ -99,7 +111,7 @@ public class pincipalServices extends AppCompatActivity implements Response.List
     public void onResponse(JSONObject response) {
 
         JSONArray jsonArray = response.optJSONArray("solicitud");
-        if(jsonObjectRequest.getUrl().equals("https://arreglalo.000webhostapp.com/clientList.php?id="+cliente.getId())){
+        if(jsonObjectRequest.getUrl().equals("https://arreglalo.co/clientList.php?id="+cliente.getId())){
         try {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = null;
@@ -113,7 +125,8 @@ public class pincipalServices extends AppCompatActivity implements Response.List
                 solicituds.add(solicitud);*/
                 if(jsonObject!=null){
                 id_s.add(jsonObject.optInt("Id_S1"));
-                Toast.makeText(this,id_s.get(i)+" ",Toast.LENGTH_SHORT).show();}
+                //Toast.makeText(this,id_s.get(i)+" ",Toast.LENGTH_SHORT).show();
+                    }
             }
             dialog.hide();
         } catch (JSONException e) {

@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,7 +24,7 @@ import java.io.Serializable;
 public class finalService extends AppCompatActivity implements Response.Listener<JSONObject>,Response.ErrorListener{
     private Solicitud solicitud;
     private Cliente cliente;
-
+    private String fecha;
 
     private ProgressDialog dialog;
     private RequestQueue queue;
@@ -42,7 +43,7 @@ public class finalService extends AppCompatActivity implements Response.Listener
                 Intent intent = new Intent(finalService.this, pincipalServices.class);
                 intent.putExtra("cliente",((Serializable)cliente));
                 intent.putExtra("solicitud",((Serializable)solicitud));
-                startActivity(intent);
+                //startActivity(intent);
                 finish();
             }
         },5000);
@@ -50,7 +51,7 @@ public class finalService extends AppCompatActivity implements Response.Listener
     public void cargarWebService(){
         dialog = new ProgressDialog(this);
         dialog.setMessage("Cargando");
-        String url = "https://arreglalo.000webhostapp.com/recibirSol1.php";
+        String url = "https://arreglalo.co/recibirSolCot.php?id="+solicitud.getId();
         dialog.show();
 
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
@@ -64,12 +65,13 @@ public class finalService extends AppCompatActivity implements Response.Listener
     @Override
     public void onResponse(JSONObject response) {
         dialog.hide();
-        Solicitud solicitud1 = new Solicitud();
+
         JSONArray jsonArray = response.optJSONArray("usuario");
         JSONObject jsonObject= null;
         try {
             jsonObject  =jsonArray.getJSONObject(0);
-            solicitud.setId(jsonObject.optInt("Id_F")+1);
+            Toast.makeText(getApplicationContext(),jsonObject.opt("Fecha")+" ",Toast.LENGTH_SHORT).show();
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -90,6 +90,7 @@ private int id;
 
         cargarWebService();
         startActivity(intent);
+        finish();
     }
     public void fechaHora(View view){
         if (view==btFecha){
@@ -138,12 +139,12 @@ private int id;
 
         url=url.replace(" ","%20");*/
         //String url1 ="http://192.168.0.10/arreglalo/index.php?nombre=yo&numero=2344&direccion=yo&correo=yo&ciudad=yo&contrasena=yo&calificacion=5&id=5";
-        String url1 = "https://arreglalo.000webhostapp.com/recibirSol1.php";
+        String url1 = "https://arreglalo.co/recibirSol1.php";
         if (!carge){
             jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url1,null,this,this);
             queue.add(jsonObjectRequest);
         }else {
-            String url = "https://arreglalo.000webhostapp.com/insertSolicitud.php?id="+solicitud.getId() +
+            String url = "https://arreglalo.co/insertSolicitud.php?id="+solicitud.getId() +
                     "&tipo="+solicitud.getService() +
                     "&desc="+solicitud.getDetails() +
                     "&uid="+cliente.getId() +

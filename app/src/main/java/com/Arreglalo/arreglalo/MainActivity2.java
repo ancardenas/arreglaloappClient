@@ -65,7 +65,7 @@ public class MainActivity2 extends AppCompatActivity implements com.android.voll
     public void cargarWebService(){
         dialog = new ProgressDialog(this);
         dialog.setMessage("Cargando");
-        String url = "https://arreglalo.000webhostapp.com/recibirSol.php";
+        String url = "https://arreglalo.co/recibirSol.php";
         dialog.show();
 
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);

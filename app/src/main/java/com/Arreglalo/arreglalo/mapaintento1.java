@@ -112,27 +112,25 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
         mapView.onSaveInstanceState(outState);
     }
     public void reaady(View view) {
-        Intent intent = new Intent(this, pincipalServices.class);
+
         cliente.setDireccion(direccion.getText().toString());
         cliente.setCiudad(ciudad.getText().toString());
         cliente.setDetalles(detalles.getText().toString());
         cliente.setCalificacion(5);
+        cargarWebService();
         /*
         AQUI es donde se termina el registro del cliente y se deberia subir toda su inormacion a la
         base de datos
          */
 
 
-        intent.putExtra("cliente",(Serializable)cliente);
-        cargarWebService();
-        startActivity(intent);
     }
 
     private void cargarWebService() {
         dialog = new ProgressDialog(this);
         dialog.setMessage("CARGAAAA");
         dialog.show();
-        String url = "https://arreglalo.000webhostapp.com/index.php?nombre="+cliente.getNombre()+
+        String url = "https://arreglalo.co/index.php?nombre="+cliente.getNombre()+
                 "&numero="+cliente.getNumero()+
                 "&direccion="+cliente.getDireccion()+"%20"+cliente.getDetalles()+
                 "&correo="+cliente.getCorreo()+
@@ -151,14 +149,17 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onErrorResponse(VolleyError error) {
     dialog.hide();
-        Toast.makeText(this,"MAMA NO LO LOGRE",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Hubo un error vuelva a intentarlo",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onResponse(JSONObject response) {
-        Toast.makeText(this,"MAMA LO LOGRE",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Usted ha sido registrado exitosamente",Toast.LENGTH_SHORT).show();
         dialog.hide();
+        Intent intent = new Intent(this, pincipalServices.class);
+        intent.putExtra("cliente",(Serializable)cliente);
 
+        startActivity(intent);
 
     }
 }

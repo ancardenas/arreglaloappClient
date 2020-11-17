@@ -17,6 +17,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class cotizacion extends AppCompatActivity implements Response.Listener<JSONObject>,Response.ErrorListener{
@@ -29,7 +31,7 @@ public class cotizacion extends AppCompatActivity implements Response.Listener<J
     private TextView tx_cost;
     private TextView tx_date;
     private TextView tx_hour;
-
+    String fecha;
 
     private ProgressDialog dialog;
     private RequestQueue queue;
@@ -58,45 +60,56 @@ public class cotizacion extends AppCompatActivity implements Response.Listener<J
         tx_date.setText("Tu fixer llegara el:"+solicitud.getDia()+"-"+solicitud.getMes()+"-"+solicitud.getAno());
 
         queue = Volley.newRequestQueue(this);
+        cargarWebService();
 
     }
     public void  click (View view){
-        Intent intent = new Intent(this,Facil.class);
+        Intent intent = new Intent(this,pincipalServices.class);
         /*
         AQUI es donde se deberia subir la solicitud a la base de datos
         el cual corresponde a la variable solicitud
          */
         //cargarWebService();
-        startActivity(intent);
+        //startActivity(intent);
+        finish();
     }
 
 
-    private void cargarWebService() {
+    public void cargarWebService(){
         dialog = new ProgressDialog(this);
-        dialog.setMessage("CARGAAAA");
+        dialog.setMessage("Cargando");
+        String url = "https://arreglalo.co/recibirSolCot.php?id="+solicitud.getId();
         dialog.show();
-        String url = "https://arreglalo.000webhostapp.com/insertSolicitud.php?id="+solicitud.getId() +
-                "&tipo="+solicitud.getService() +
-                "&desc="+solicitud.getDetails() +
-                "&uid="+cliente.getId() +
-                "&fecha="+solicitud.getAno() +"-"+solicitud.getMes() +"-"+solicitud.getDia()+"%20"+solicitud.getHora()+":"+solicitud.getMinuto()+":00";
 
-        url=url.replace(" ","%20");
-        //String url1 ="http://192.168.0.10/arreglalo/index.php?nombre=yo&numero=2344&direccion=yo&correo=yo&ciudad=yo&contrasena=yo&calificacion=5&id=5";
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         queue.add(jsonObjectRequest);
-
+        tx_hour.setText("A las:"+solicitud.getHora()+":"+solicitud.getMinuto());
     }
-
     @Override
     public void onErrorResponse(VolleyError error) {
-        dialog.hide();
-        Toast.makeText(this,"MAMA NO LO LOGRE",Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
     public void onResponse(JSONObject response) {
-        Toast.makeText(this,"MAMA LO LOGRE",Toast.LENGTH_SHORT).show();
         dialog.hide();
+
+        JSONArray jsonArray = response.optJSONArray("usuario");
+        JSONObject jsonObject= null;
+        try {
+            jsonObject  =jsonArray.getJSONObject(0);
+            //Toast.makeText(getApplicationContext(),jsonObject.optString("Fecha")+" ",Toast.LENGTH_SHORT).show();
+            fecha = jsonObject.opt("Fecha") + " ";
+            solicitud.setAno(Integer.parseInt(fecha.substring(0,4)));
+            solicitud.setMes(Integer.parseInt(fecha.substring(5,7)));
+            solicitud.setDia(Integer.parseInt(fecha.substring(8,10)));
+            solicitud.setHora(Integer.parseInt(fecha.substring(11,13)));
+            solicitud.setMinuto(Integer.parseInt(fecha.substring(14,16)));
+            tx_hour.setText("A las:"+solicitud.getHora()+":"+solicitud.getMinuto());
+            tx_date.setText("Tu fixer llegara el:"+solicitud.getDia()+"-"+solicitud.getMes()+"-"+solicitud.getAno());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 }

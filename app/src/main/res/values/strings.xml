@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Arreglalo</string>
+    <string name="app_name">Arréglalo</string>
     <string name="txt_inicio"> <b>¿Reparaciones? <br> </br> Encuentra a tu Fixer </b> </string>
     <string name="imffix">img</string>
     <string name="button_reg">Con numero de Celular</string>
