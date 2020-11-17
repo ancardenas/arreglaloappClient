@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 public class pincipalServices extends AppCompatActivity implements Response.Listener<JSONObject>,Response.ErrorListener{
     private String service;
     private Cliente cliente;
-    private EditText search;
+    private TextView search;
 
 
     private ProgressDialog dialog;

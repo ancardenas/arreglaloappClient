@@ -82,6 +82,7 @@
         android:text="@string/check"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_number" />
+        app:layout_constraintTop_toBottomOf="@+id/ed_number"
+        tools:targetApi="lollipop" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

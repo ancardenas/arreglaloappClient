@@ -2,13 +2,9 @@ package com.Arreglalo.arreglalo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,65 +17,27 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class cotizacion extends AppCompatActivity implements Response.Listener<JSONObject>,Response.ErrorListener{
-    private Cliente cliente;
-    private Solicitud solicitud;
-    private TextView tx_service;
-    private TextView tx_details;
-    private TextView tx_time;
-    private TextView tx_total;
-    private TextView tx_cost;
-    private TextView tx_date;
-    private TextView tx_hour;
-    String fecha;
-
+public class fix_Data extends AppCompatActivity implements Response.Listener<JSONObject>,Response.ErrorListener{
     private ProgressDialog dialog;
     private RequestQueue queue;
     private JsonObjectRequest jsonObjectRequest;
-    @SuppressLint("ResourceType")
+    private Solicitud solicitud;
+    private String fecha;
+    private TextView tx_hour,tx_date,tx_cost,tx_time,fixerId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.activity_cotizacion);
-        solicitud =  (Solicitud) getIntent().getSerializableExtra("solicitud");
-        cliente = (Cliente) getIntent().getSerializableExtra("cliente");
-        tx_service = findViewById(R.id.txt_service);
-        tx_details = findViewById(R.id.txt_details);
-        tx_time = findViewById(R.id.txt_time);
-        tx_total = findViewById(R.id.txt_total);
-        tx_cost = findViewById(R.id.txt_cost);
-        tx_date = findViewById(R.id.txt_date);
-        tx_hour = findViewById(R.id.txt_hour);
-        tx_service.setText("Tipo de servicio:"+solicitud.getService());
-        tx_details.setText(solicitud.getDetails());
-        tx_hour.setText("A las:"+solicitud.getHora()+":"+solicitud.getMinuto());
-        int cost = 25000*solicitud.getDuracion();
-
-        tx_cost.setText(cost+" ");
-        tx_time.setText("Duracion: "+solicitud.getDuracion()+" Horas");
-        tx_date.setText("Tu fixer llegara el:"+solicitud.getDia()+"-"+solicitud.getMes()+"-"+solicitud.getAno());
-        Toast.makeText(this,solicitud.getId()+" ",Toast.LENGTH_SHORT).show();
+        setContentView(R.layout.activity_fix__data);
+        solicitud =(Solicitud) getIntent().getSerializableExtra("solicitud");
+        tx_hour = findViewById(R.id.txt_hourfix);
+        tx_date = findViewById(R.id.txt_datefix);
+        tx_cost = findViewById(R.id.txt_costfix);
+        tx_time = findViewById(R.id.txt_duracion);
+        fixerId = findViewById(R.id.txt_fixId);
         queue = Volley.newRequestQueue(this);
         cargarWebService();
-
     }
-    public void  click (View view){
-        Intent intent = new Intent(this,clietnService.class);
-        /*
-        AQUI es donde se deberia subir la solicitud a la base de datos
-        el cual corresponde a la variable solicitud
-         */
-        //cargarWebService();
-        //startActivity(intent);
-        String url = "https://arreglalo.co/actualizarCompleted.php?id="+solicitud.getId();
-        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
-        queue.add(jsonObjectRequest);
-
-        finish();
-    }
-
-
     public void cargarWebService(){
         dialog = new ProgressDialog(this);
         dialog.setMessage("Cargando");
@@ -114,8 +72,8 @@ public class cotizacion extends AppCompatActivity implements Response.Listener<J
                 solicitud.setDia(Integer.parseInt(fecha.substring(8,10)));
                 solicitud.setHora(Integer.parseInt(fecha.substring(11,13)));
                 solicitud.setMinuto(Integer.parseInt(fecha.substring(14,16)));
-                tx_hour.setText("A las: "+solicitud.getHora()+":"+solicitud.getMinuto());
-                tx_date.setText("Tu fixer llegara el:"+solicitud.getDia()+"-"+solicitud.getMes()+"-"+solicitud.getAno());
+                tx_hour.setText(solicitud.getHora()+":"+solicitud.getMinuto());
+                tx_date.setText(solicitud.getDia()+"-"+solicitud.getMes()+"-"+solicitud.getAno());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -127,6 +85,7 @@ public class cotizacion extends AppCompatActivity implements Response.Listener<J
             try {
                 jsonObject  =jsonArray.getJSONObject(0);
                 solicitud.setDuracion(jsonObject.optInt("Duracion"));
+                fixerId.setText(jsonObject.optString("Id_F1"));
 
 
 
@@ -136,7 +95,7 @@ public class cotizacion extends AppCompatActivity implements Response.Listener<J
             int cost = 25000*solicitud.getDuracion();
 
             tx_cost.setText(cost+" ");
-            tx_time.setText("Duracion: "+solicitud.getDuracion()+" Horas");
+            tx_time.setText(solicitud.getDuracion()+" ");
 
             dialog.hide();
         }else {

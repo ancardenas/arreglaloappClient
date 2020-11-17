@@ -14,6 +14,15 @@ public class Solicitud implements Serializable {
     private int id;
     private boolean complete;
     private boolean acepted;
+    private int duracion;
+
+    public int getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
+    }
 
     public boolean isAcepted() {
         return acepted;

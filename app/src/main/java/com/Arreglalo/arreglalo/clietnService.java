@@ -46,18 +46,39 @@ public class clietnService extends AppCompatActivity implements Response.Listene
 
 
     }
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+        cargarWebService();
+        //Toast.makeText(this,"Resumiendo",Toast.LENGTH_SHORT).show();
+    }
     public void cargarLista(){
         clienteAdapter adapter = new clienteAdapter(solicituds,getApplicationContext());
         recyclerView = findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         adapter.setOnClickListener(v -> {
+
+
             solicitud = solicituds.get(recyclerView.getChildAdapterPosition(v));
-            //Toast.makeText(getApplicationContext(),solicitud.getService(),Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getApplicationContext(), cotizacion.class);
-            intent.putExtra("cliente",((Serializable)cliente));
-            intent.putExtra("solicitud",((Serializable)solicitud));
-            startActivity(intent);
+            if (solicitud.isAcepted()&&!solicitud.isComplete()){
+                Intent intent = new Intent(getApplicationContext(), cotizacion.class);
+                intent.putExtra("cliente",((Serializable)cliente));
+                intent.putExtra("solicitud",((Serializable)solicitud));
+                startActivity(intent);
+                finish();
+            }else if(solicitud.isComplete()){
+                Intent intent = new Intent(getApplicationContext(), fix_Data.class);
+                intent.putExtra("cliente",((Serializable)cliente));
+                intent.putExtra("solicitud",((Serializable)solicitud));
+                startActivity(intent);
+
+            }else {
+                Toast.makeText(getApplicationContext(),"Los Fixers se encuentran revisando su solicitud",Toast.LENGTH_SHORT).show();
+            }
+            //
+
         });
         recyclerView.setAdapter(adapter);
     }
@@ -66,14 +87,15 @@ public class clietnService extends AppCompatActivity implements Response.Listene
         dialog = new ProgressDialog(this);
         dialog.setMessage("Cargando");
         String url = "https://arreglalo.co/listaSol1.php";
-        dialog.show();
+        //dialog.show();
 
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         queue.add(jsonObjectRequest);
+
     }
     @Override
     public void onErrorResponse(VolleyError error) {
-        dialog.hide();
+        //dialog.hide();
         Toast.makeText(this,"No fue posible encontrar servicios",Toast.LENGTH_SHORT).show();
     }
 
@@ -102,18 +124,27 @@ public class clietnService extends AppCompatActivity implements Response.Listene
                     acep = false;
                 }
                 solicitud.setAcepted(acep);
+                boolean comp;
+
+                if(jsonObject.optInt("Complete")==1){
+                    comp = true;
+                }else{
+                    comp = false;
+                }
+                solicitud.setComplete(comp);
+                Toast.makeText(this,solicitud.isComplete()+" ",Toast.LENGTH_LONG);
                 if (id_s.contains(solicitud.getId())){
                     solicituds.add(solicitud);
                 }
 
                // Toast.makeText(this,solicitud.getService()+i,Toast.LENGTH_SHORT).show();
             }
-            dialog.hide();
+           // dialog.hide();
         } catch (JSONException e) {
             e.printStackTrace();
         }
         cargarLista();
-
+        //dialog.hide();
 
     }
 
