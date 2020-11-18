@@ -64,6 +64,7 @@ public class fix_Data extends AppCompatActivity implements Response.Listener<JSO
         JSONObject jsonObject= null;
         if(jsonObjectRequest.getUrl().equals("https://arreglalo.co/recibirSolCot.php?id="+solicitud.getId())){
             try {
+
                 jsonObject  =jsonArray.getJSONObject(0);
                 //Toast.makeText(getApplicationContext(),jsonObject.optString("Fecha")+" ",Toast.LENGTH_SHORT).show();
                 fecha = jsonObject.opt("Fecha") + " ";

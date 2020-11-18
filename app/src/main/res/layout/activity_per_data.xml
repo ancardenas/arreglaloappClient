@@ -56,23 +56,6 @@
         app:layout_constraintTop_toBottomOf="@+id/ed_apellidos"
         android:importantForAutofill="no" />
 
-    <EditText
-        android:id="@+id/ed_contrasena"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="@string/contrasena"
-        android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
-        android:textColorHighlight="@color/arre_blue"
-        android:textColorLink="@color/arre_darkBlue"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Email" />
-
     <Button
         android:id="@+id/bt_sig"
         android:layout_width="340dp"
@@ -93,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:buttonTint="@color/green_Arre"
         android:onClick="uncheck"
         android:text="@string/ck_tyc"
@@ -114,5 +97,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ck_tyc"
         tools:targetApi="lollipop" />
+
+    <EditText
+        android:id="@+id/ed_contrasena"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="@string/contrasena"
+        android:inputType="textPassword"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

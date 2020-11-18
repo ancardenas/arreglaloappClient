@@ -76,11 +76,13 @@ public class clienteAdapter extends RecyclerView.Adapter<clienteAdapter.ViewHold
         void bindData(final Solicitud item){
             tipo.setText(item.getService());
             detalles.setText(item.getDetails());
-            if (item.isAcepted()&&!item.isComplete()){
-                icono.setImageResource(R.mipmap.fixer);
-            }else if(item.isComplete()) {
-                icono.setImageResource(R.mipmap.comprobar);
-                
+            if (item.isComplete()){
+                icono.setImageResource(R.mipmap.completedstateicon);
+
+            }else if(item.isAcepted()){
+                icono.setImageResource(R.mipmap.aceptedstateicon);
+            }else{
+                icono.setImageResource(R.mipmap.sendstateicon);
             }
         }
     }

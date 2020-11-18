@@ -542,27 +542,15 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="74dp"
+        android:layout_height="51dp"
         android:layout_marginTop="16dp"
+        android:background="#0090BF01"
         android:contentDescription="@string/actualizar"
         android:onClick="update"
-        android:tint="@color/arre_darkGreen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_popup_sync" />
-
-    <TextView
-        android:id="@+id/ed_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="TextView"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.175"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:srcCompat="@drawable/ic_bellstateicon" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

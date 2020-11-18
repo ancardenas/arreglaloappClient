@@ -3,7 +3,7 @@
     <string name="app_name">Arréglalo</string>
     <string name="txt_inicio"> <b>¿Reparaciones? <br> </br> Encuentra a tu Fixer </b> </string>
     <string name="imffix">img</string>
-    <string name="button_reg">Con número de Celular</string>
+    <string name="button_reg">Registrarse</string>
     <string name="crea_tu_cuenta_en_arreglalo">Crea tu cuenta en Arréglalo</string>
     <string name="bt_initSesion">Iniciar Sesión</string>
 
@@ -14,8 +14,8 @@
     <string name="num_camp">Numero de Celular</string>
     <string name="rbnum">Acepto brindar mi numero de telefono a arreglalo</string>
     <string name="btn_num">Recibir Código por WhatsApp</string>
-    <string name="btn_numtel">Recibir Código por SMS</string>
-    <string name="check">Acepto recibir código de seguridad por WhastApp/SMS</string>
+    <string name="btn_numtel">Continuar</string>
+    <string name="check">Acepto brindar mi numero de telefono</string>
 
 
     <string name="imagen">imagen</string>

@@ -45,30 +45,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/bt1"
-        android:layout_width="342dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="128dp"
-        android:background="@drawable/estado_but"
-        android:onClick="clikc"
-        android:text="@string/btn_num"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_number" />
-
-    <Button
         android:id="@+id/btsms"
         android:layout_width="342dp"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/estado_but"
         android:onClick="clikc"
         android:text="@string/btn_numtel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt1" />
+        app:layout_constraintTop_toBottomOf="@+id/ckb1" />
 
     <CheckBox
         android:id="@+id/ckb1"

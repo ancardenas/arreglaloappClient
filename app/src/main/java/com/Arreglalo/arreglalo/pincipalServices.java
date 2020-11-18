@@ -29,7 +29,7 @@ import java.util.ArrayList;
 public class pincipalServices extends AppCompatActivity implements Response.Listener<JSONObject>,Response.ErrorListener{
     private String service;
     private Cliente cliente;
-    private TextView search;
+    //private TextView search;
 
 
     private ProgressDialog dialog;
@@ -43,8 +43,8 @@ public class pincipalServices extends AppCompatActivity implements Response.List
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pincipal_services);
         cliente = (Cliente)getIntent().getSerializableExtra("cliente");
-        search = findViewById(R.id.ed_search);
-        search.setText(cliente.getNombre());
+        //search = findViewById(R.id.ed_search);
+        //search.setText(cliente.getNombre());
         queue = Volley.newRequestQueue(this);
     }
     public void click(View view){
