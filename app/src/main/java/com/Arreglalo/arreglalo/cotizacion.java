@@ -59,7 +59,7 @@ public class cotizacion extends AppCompatActivity implements Response.Listener<J
         tx_cost.setText(cost+" ");
         tx_time.setText("Duracion: "+solicitud.getDuracion()+" Horas");
         tx_date.setText("Tu fixer llegara el:"+solicitud.getDia()+"-"+solicitud.getMes()+"-"+solicitud.getAno());
-        Toast.makeText(this,solicitud.getId()+" ",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,solicitud.getId()+" ",Toast.LENGTH_SHORT).show();
         queue = Volley.newRequestQueue(this);
         cargarWebService();
 

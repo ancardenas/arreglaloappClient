@@ -132,7 +132,7 @@ public class clietnService extends AppCompatActivity implements Response.Listene
                     comp = false;
                 }
                 solicitud.setComplete(comp);
-                Toast.makeText(this,solicitud.isComplete()+" ",Toast.LENGTH_LONG);
+                //Toast.makeText(this,solicitud.isComplete()+" ",Toast.LENGTH_LONG);
                 if (id_s.contains(solicitud.getId())){
                     solicituds.add(solicitud);
                 }

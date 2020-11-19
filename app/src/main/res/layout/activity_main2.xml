@@ -48,27 +48,12 @@
         android:id="@+id/btsms"
         android:layout_width="342dp"
         android:layout_height="50dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="155dp"
         android:background="@drawable/estado_but"
         android:onClick="clikc"
         android:text="@string/btn_numtel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ckb1" />
-
-    <CheckBox
-        android:id="@+id/ckb1"
-        android:layout_width="310dp"
-        android:layout_height="74dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="36dp"
-        android:buttonTint="@color/green_Arre"
-        android:onClick="uncheck"
-        android:text="@string/check"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_number"
-        tools:targetApi="lollipop" />
+        app:layout_constraintTop_toBottomOf="@+id/ed_number" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

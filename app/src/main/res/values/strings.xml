@@ -11,11 +11,11 @@
 
 
     <string name="txt_2">Ingresa tu número de Celular</string>
-    <string name="num_camp">Numero de Celular</string>
+    <string name="num_camp">Número de Celular</string>
     <string name="rbnum">Acepto brindar mi numero de telefono a arreglalo</string>
     <string name="btn_num">Recibir Código por WhatsApp</string>
     <string name="btn_numtel">Continuar</string>
-    <string name="check">Acepto brindar mi numero de telefono</string>
+    <string name="check">Acepto brindar mi número de telefono</string>
 
 
     <string name="imagen">imagen</string>

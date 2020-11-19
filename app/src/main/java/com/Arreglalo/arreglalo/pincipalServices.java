@@ -77,19 +77,17 @@ public class pincipalServices extends AppCompatActivity implements Response.List
 
     public void update(View view){
         cargarWebService();
-        new AlertDialog.Builder(this)
+        /*new AlertDialog.Builder(this)
                 .setTitle("Su solicitud ha sido cotizada")
                 .setMessage("Un Fixer ha cotizado su solicitud desea observarla").setPositiveButton("Ver", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //Toast.makeText(getApplicationContext(),"Holi soy un dialogo",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),clietnService.class);
-                intent.putExtra("cliente",cliente);
-                intent.putExtra("service",service);
-                intent.putExtra("listServices",id_s);
-                startActivity(intent);
+
             }
-        }).show();
+        }).show();*/
+
+
     }
 
     public void cargarWebService(){
@@ -132,7 +130,13 @@ public class pincipalServices extends AppCompatActivity implements Response.List
             dialog.hide();
         } catch (JSONException e) {
             e.printStackTrace();
-        }}
+        }
+            Intent intent = new Intent(getApplicationContext(),clietnService.class);
+            intent.putExtra("cliente",cliente);
+            intent.putExtra("service",service);
+            intent.putExtra("listServices",id_s);
+            startActivity(intent);
+        }
     }
 
 

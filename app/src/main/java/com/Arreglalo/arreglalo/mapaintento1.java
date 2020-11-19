@@ -26,6 +26,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -117,7 +119,7 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
         cliente.setCiudad(ciudad.getText().toString());
         cliente.setDetalles(detalles.getText().toString());
         cliente.setCalificacion(5);
-        cargarWebService();
+        //cargarWebService();
         /*
         AQUI es donde se termina el registro del cliente y se deberia subir toda su inormacion a la
         base de datos
@@ -128,21 +130,15 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
 
     private void cargarWebService() {
         dialog = new ProgressDialog(this);
-        dialog.setMessage("CARGAAAA");
+        dialog.setMessage("Cargando");
         dialog.show();
-        String url = "https://arreglalo.co/index.php?nombre="+cliente.getNombre()+
-                "&numero="+cliente.getNumero()+
-                "&direccion="+cliente.getDireccion()+"%20"+cliente.getDetalles()+
-                "&correo="+cliente.getCorreo()+
-                "&ciudad="+cliente.getCiudad()+
-                "&contrasena="+cliente.getContrasena()+
-                "&calificacion="+cliente.getCalificacion()+
-                "&id="+cliente.getId();
+        String url1 = "https://arreglalo.co/recibirSol.php";
 
-        url=url.replace(" ","%20");
-        //String url1 ="http://192.168.0.10/arreglalo/index.php?nombre=yo&numero=2344&direccion=yo&correo=yo&ciudad=yo&contrasena=yo&calificacion=5&id=5";
-        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+
+        jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url1,null,this,this);
         queue.add(jsonObjectRequest);
+
+
 
     }
 
@@ -156,10 +152,41 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
     public void onResponse(JSONObject response) {
         Toast.makeText(this,"Usted ha sido registrado exitosamente",Toast.LENGTH_SHORT).show();
         dialog.hide();
-        Intent intent = new Intent(this, pincipalServices.class);
-        intent.putExtra("cliente",(Serializable)cliente);
 
-        startActivity(intent);
+
+        if(jsonObjectRequest.getUrl().equals("https://arreglalo.co/recibirSol.php")){
+            JSONArray jsonArray = response.optJSONArray("usuario");
+            JSONObject jsonObject= null;
+            try {
+                jsonObject  =jsonArray.getJSONObject(0);
+                cliente.setId(jsonObject.optInt("Id_U")+1);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            String url = "https://arreglalo.co/index.php?nombre="+cliente.getNombre()+
+                    "&numero="+cliente.getNumero()+
+                    "&direccion="+cliente.getDireccion()+"%20"+cliente.getDetalles()+
+                    "&correo="+cliente.getCorreo()+
+                    "&ciudad="+cliente.getCiudad()+
+                    "&contrasena="+cliente.getContrasena()+
+                    "&calificacion="+cliente.getCalificacion()+
+                    "&id="+cliente.getId();
+
+            url=url.replace(" ","%20");
+            //String url1 ="http://192.168.0.10/arreglalo/index.php?nombre=yo&numero=2344&direccion=yo&correo=yo&ciudad=yo&contrasena=yo&calificacion=5&id=5";
+            jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+            queue.add(jsonObjectRequest);
+
+
+
+
+        }else {
+            Intent intent = new Intent(this, pincipalServices.class);
+            intent.putExtra("cliente",(Serializable)cliente);
+
+            startActivity(intent);
+        }
+
 
     }
 }

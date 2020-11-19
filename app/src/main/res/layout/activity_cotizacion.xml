@@ -54,8 +54,9 @@
         android:text="Resumen de la solicitud"
         android:textColor="#595858"
         android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
     <TextView
         android:id="@+id/textView28"
@@ -160,7 +161,7 @@
         android:layout_marginTop="50dp"
         android:background="@drawable/estado_but"
         android:onClick="click"
-        android:text="Pagar"
+        android:text="Aceptar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"

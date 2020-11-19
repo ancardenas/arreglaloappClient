@@ -26,8 +26,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity2 extends AppCompatActivity implements com.android.volley.Response.Listener<JSONObject>, Response.ErrorListener {
     private Cliente cliente;
-    private Button button;
-    private Button btsms;
+    //private Button button;
+    //private Button btsms;
     private CheckBox ck;
     private EditText num;
 
@@ -39,11 +39,11 @@ public class MainActivity2 extends AppCompatActivity implements com.android.voll
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        btsms = findViewById(R.id.btsms);
-        button =findViewById(R.id.bt1);
-        btsms.setEnabled(false);
-        button.setEnabled(false);
-        ck = findViewById(R.id.ckb1);
+        //btsms = findViewById(R.id.btsms);
+       //button =findViewById(R.id.bt1);
+        //btsms.setEnabled(false);
+        //button.setEnabled(false);
+        //ck = findViewById(R.id.ckb1);
         num =  (EditText) findViewById(R.id.ed_number);
         cliente = new Cliente();
 
@@ -65,8 +65,9 @@ public class MainActivity2 extends AppCompatActivity implements com.android.voll
     public void cargarWebService(){
         dialog = new ProgressDialog(this);
         dialog.setMessage("Cargando");
-        String url = "https://arreglalo.co/recibirSol.php";
         dialog.show();
+        String url = "https://arreglalo.co/recibirSol.php";
+
 
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         queue.add(jsonObjectRequest);
@@ -90,17 +91,17 @@ public class MainActivity2 extends AppCompatActivity implements com.android.voll
         }
 
     }
-    public void uncheck(View view){
+    /*public void uncheck(View view){
         if (ck.isChecked() ){
-            button.setEnabled(true);
-            btsms.setEnabled(true);
+            //button.setEnabled(true);
+           // btsms.setEnabled(true);
         }else {
             Toast.makeText(this,"Ingrese un numero valido y vuelva a intentar", Toast.LENGTH_SHORT).show();
-            button.setEnabled(false);
+            //button.setEnabled(false);
             ck.setChecked(false);
 
         }
-    }
+    }*/
 
 
 }
