@@ -119,7 +119,7 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
         cliente.setCiudad(ciudad.getText().toString());
         cliente.setDetalles(detalles.getText().toString());
         cliente.setCalificacion(5);
-        //cargarWebService();
+        cargarWebService();
         /*
         AQUI es donde se termina el registro del cliente y se deberia subir toda su inormacion a la
         base de datos
@@ -160,6 +160,7 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
             try {
                 jsonObject  =jsonArray.getJSONObject(0);
                 cliente.setId(jsonObject.optInt("Id_U")+1);
+                Toast.makeText(this,cliente.getId()+"",Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -172,6 +173,7 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
                     "&calificacion="+cliente.getCalificacion()+
                     "&id="+cliente.getId();
 
+
             url=url.replace(" ","%20");
             //String url1 ="http://192.168.0.10/arreglalo/index.php?nombre=yo&numero=2344&direccion=yo&correo=yo&ciudad=yo&contrasena=yo&calificacion=5&id=5";
             jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null,this,this);
@@ -183,8 +185,9 @@ public class mapaintento1 extends AppCompatActivity implements OnMapReadyCallbac
         }else {
             Intent intent = new Intent(this, pincipalServices.class);
             intent.putExtra("cliente",(Serializable)cliente);
-
+            Toast.makeText(this,cliente.toString(),Toast.LENGTH_SHORT).show();
             startActivity(intent);
+            finish();
         }
 
 

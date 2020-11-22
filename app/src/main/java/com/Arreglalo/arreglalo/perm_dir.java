@@ -23,5 +23,6 @@ public class perm_dir extends AppCompatActivity {
         Intent intent = new Intent(this,mapaintento1.class);
         intent.putExtra("cliente",(Serializable)cliente);
         startActivity(intent);
+        finish();
     }
 }

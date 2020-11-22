@@ -59,6 +59,7 @@ public class MainActivity2 extends AppCompatActivity implements com.android.voll
         Intent intent = new Intent(this, per_data.class);
         intent.putExtra("cliente",(Serializable) cliente);
         startActivity(intent);
+        finish();
     }
 
 

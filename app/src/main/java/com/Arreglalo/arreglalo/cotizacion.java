@@ -78,6 +78,9 @@ public class cotizacion extends AppCompatActivity implements Response.Listener<J
 
         finish();
     }
+    public void cancel(View view){
+        finish();
+    }
 
 
     public void cargarWebService(){

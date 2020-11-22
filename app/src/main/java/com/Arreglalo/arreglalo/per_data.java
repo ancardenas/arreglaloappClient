@@ -55,5 +55,6 @@ public class per_data extends AppCompatActivity {
         intent.putExtra("cliente",(Serializable)cliente);
 
         startActivity(intent);
+        finish();
     }
 }

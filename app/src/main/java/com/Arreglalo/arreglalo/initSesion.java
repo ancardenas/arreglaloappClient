@@ -97,7 +97,7 @@ public class initSesion extends AppCompatActivity implements Response.Listener<J
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        if (jsonObject!=null){
+        if (jsonObject.optInt("in")==1){
             correcto=true;
             cliente.setId(jsonObject.optInt("Id_U"));
             cliente.setNombre(jsonObject.optString("Nom_U"));
